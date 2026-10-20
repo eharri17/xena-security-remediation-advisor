@@ -1,0 +1,71 @@
+{
+  "_comment": "SAMPLE DATA for offline demos only. Simulates results of read-only JQL searches in project XENA.",
+  "issues": [
+    {
+      "key": "XENA-987",
+      "summary": "CVE-2021-44228 Log4Shell: upgrade log4j-core in xena-worker",
+      "status": "Done",
+      "resolution": "Fixed",
+      "created": "2025-12-11",
+      "resolutiondate": "2025-12-17",
+      "assignee": "jdoe (Core Services)",
+      "components": ["Core Services"],
+      "labels": ["security", "wiz", "CVE-2021-44228"],
+      "priority": "P1",
+      "resolutionNotes": "Pinned log4j2.version=2.17.1 in parent pom dependencyManagement; rebuilt xena-worker image 3.8.2; Wiz issue auto-resolved next scan.",
+      "pr": "ASX-XENA/xena-worker PR #412"
+    },
+    {
+      "key": "XENA-1050",
+      "summary": "CVE-2021-45046 log4j follow-up in xena-batch",
+      "status": "Done",
+      "resolution": "Fixed",
+      "created": "2026-01-05",
+      "resolutiondate": "2026-01-09",
+      "assignee": "asmith (Core Services)",
+      "components": ["Core Services"],
+      "labels": ["security", "wiz", "CVE-2021-45046"],
+      "priority": "P2",
+      "resolutionNotes": "Same pattern as XENA-987: bumped log4j BOM to 2.17.1, removed transitive log4j from legacy reporting lib via <exclusions>.",
+      "pr": "ASX-XENA/xena-batch PR #88"
+    },
+    {
+      "key": "XENA-1203",
+      "summary": "Upgrade Spring Boot 2.7 -> 3.2 in xena-api",
+      "status": "In Progress",
+      "created": "2026-09-20",
+      "assignee": "jdoe (Core Services)",
+      "components": ["Core Services"],
+      "labels": ["tech-debt"],
+      "priority": "P3",
+      "resolutionNotes": "",
+      "note": "Not a duplicate of the Log4Shell finding (different scope), but touches the same pom.xml - mention as RELATED context."
+    },
+    {
+      "key": "XENA-1311",
+      "summary": "CVE-2024-6387 regreSSHion: patch OpenSSH on bastion hosts (Wiz wiz-demo-0002)",
+      "status": "In Progress",
+      "created": "2026-10-02",
+      "assignee": "mlee (Platform Infra)",
+      "components": ["Platform Infra"],
+      "labels": ["security", "wiz", "CVE-2024-6387"],
+      "priority": "P2",
+      "resolutionNotes": "",
+      "description": "Rebuilding xena-ami-baseline with openssh 9.8p1. Interim: LoginGraceTime 0 applied via SSM."
+    },
+    {
+      "key": "XENA-1122",
+      "summary": "CVE-2023-38408 ssh-agent RCE on bastion",
+      "status": "Done",
+      "resolution": "Fixed",
+      "created": "2026-02-14",
+      "resolutiondate": "2026-02-24",
+      "assignee": "mlee (Platform Infra)",
+      "components": ["Platform Infra"],
+      "labels": ["security", "wiz", "CVE-2023-38408"],
+      "priority": "P2",
+      "resolutionNotes": "Rebuilt AMI via packer/bastion.pkr.hcl with patched openssh; rotated bastion ASG.",
+      "pr": "ASX-XENA/xena-ami-baseline PR #57"
+    }
+  ]
+}

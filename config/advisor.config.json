@@ -1,0 +1,12 @@
+{
+  "$comment": "Scope for the XENA Security Remediation Advisor PoC (XENA-PoC-01). Read by agents and enforced by scripts/hooks/advisor-hook.cjs.",
+  "jiraProject": "JIFA",
+  "bitbucketProjects": ["ASX-XENA"],
+  "businessUnit": "XENA",
+  "severityScope": ["CRITICAL"],
+  "ownershipMap": "config/ownership-map.yaml",
+  "priorityRubric": "config/priority-rubric.md",
+  "ticketTemplate": "templates/jira-ticket-draft.md",
+  "draftsDir": "drafts",
+  "auditLog": "audit/audit-log.jsonl"
+}

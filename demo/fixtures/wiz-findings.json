@@ -1,0 +1,76 @@
+{
+  "_comment": "SAMPLE DATA for offline demos only. Fictional Wiz issues modelled on public CVEs. Not from any real tenant.",
+  "findings": [
+    {
+      "scenario": "A - new critical finding, no Wiz repo mapping (Bitbucket finds it), no existing ticket -> CREATE NEW",
+      "wizIssueId": "wiz-demo-0001",
+      "title": "log4j-core 2.14.1 vulnerable to Log4Shell on internet-facing xena-api",
+      "severity": "CRITICAL",
+      "status": "OPEN",
+      "cves": ["CVE-2021-44228"],
+      "cvss": 10.0,
+      "epss": 0.975,
+      "knownExploited": true,
+      "hasFix": true,
+      "fixedVersion": "2.17.1",
+      "package": { "name": "org.apache.logging.log4j:log4j-core", "installedVersion": "2.14.1" },
+      "resource": {
+        "name": "xena-api-7c9f8d-prod",
+        "type": "Kubernetes Deployment",
+        "cloudAccount": "xena-prod (123456789012)",
+        "region": "us-east-1",
+        "image": "artifactory.example.com/xena/xena-api:1.42.0"
+      },
+      "environment": "production",
+      "internetExposed": true,
+      "toxicCombination": "Internet-exposed pod with known-exploited RCE and IAM role that can read S3 bucket xena-prod-exports",
+      "code": { "repository": "UNKNOWN", "branch": "UNKNOWN", "filePath": "UNKNOWN", "_note": "No Wiz Code mapping for this image; bitbucket-repo-investigator resolves it from the image name and app tag" },
+      "ownershipHints": { "wizProject": "XENA-Prod-Core", "tags": { "team": "core-services", "app": "xena-api" } },
+      "wizRemediation": "Upgrade org.apache.logging.log4j:log4j-core to 2.17.1 or later. As interim mitigation remove JndiLookup class from the classpath.",
+      "firstSeen": "2026-10-10T08:14:00Z",
+      "lastSeen": "2026-10-12T06:02:00Z",
+      "wizUrl": "https://app.wiz.io/issues#~(issue~'wiz-demo-0001)"
+    },
+    {
+      "scenario": "B - critical finding already tracked -> UPDATE EXISTING XENA-1311",
+      "wizIssueId": "wiz-demo-0002",
+      "title": "OpenSSH 9.3p1 regreSSHion RCE on xena bastion host",
+      "severity": "CRITICAL",
+      "status": "OPEN",
+      "cves": ["CVE-2024-6387"],
+      "cvss": 8.1,
+      "epss": 0.42,
+      "knownExploited": false,
+      "hasFix": true,
+      "fixedVersion": "9.8p1",
+      "package": { "name": "openssh-server", "installedVersion": "9.3p1" },
+      "resource": {
+        "name": "xena-bastion-01",
+        "type": "EC2 Instance",
+        "cloudAccount": "xena-prod (123456789012)",
+        "region": "us-east-1",
+        "image": "ami-0abc1234 (xena-ami-baseline 2026.08)"
+      },
+      "environment": "production",
+      "internetExposed": true,
+      "toxicCombination": "Port 22 open to 0.0.0.0/0",
+      "code": { "repository": "ASX-XENA/xena-ami-baseline", "branch": "main", "filePath": "packer/bastion.pkr.hcl" },
+      "ownershipHints": { "wizProject": "XENA-Prod-Platform", "tags": { "team": "platform-infra" } },
+      "wizRemediation": "Upgrade openssh-server to 9.8p1 or later, or set LoginGraceTime 0 as interim mitigation. Restrict SSH ingress.",
+      "firstSeen": "2026-10-01T11:40:00Z",
+      "lastSeen": "2026-10-12T06:02:00Z",
+      "wizUrl": "https://app.wiz.io/issues#~(issue~'wiz-demo-0002)"
+    },
+    {
+      "scenario": "C - HIGH severity -> out of PoC scope",
+      "wizIssueId": "wiz-demo-0003",
+      "title": "jackson-databind deserialization issue in xena-insights",
+      "severity": "HIGH",
+      "status": "OPEN",
+      "cves": ["CVE-2020-36518"],
+      "cvss": 7.5,
+      "environment": "non-production",
+      "code": { "repository": "ASX-XENA/xena-insights", "branch": "main", "filePath": "build.gradle" }
+    }
+  ]
+}

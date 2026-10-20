@@ -1,0 +1,76 @@
+{
+  "_comment": "SAMPLE DATA for offline demos only. Simulates read-only Bitbucket MCP responses for project ASX-XENA.",
+  "project": "ASX-XENA",
+  "repositories": [
+    { "slug": "xena-api", "name": "xena-api", "description": "XENA public REST API (Spring Boot)" },
+    { "slug": "xena-api-gateway", "name": "xena-api-gateway", "description": "Kong gateway configuration for XENA APIs" },
+    { "slug": "xena-worker", "name": "xena-worker", "description": "Async job worker" },
+    { "slug": "xena-batch", "name": "xena-batch", "description": "Nightly batch reporting" },
+    { "slug": "xena-infra", "name": "xena-infra", "description": "Terraform for XENA AWS accounts" },
+    { "slug": "xena-ami-baseline", "name": "xena-ami-baseline", "description": "Packer AMI baselines (bastion, build agents)" },
+    { "slug": "xena-insights", "name": "xena-insights", "description": "Superset-based insights platform" }
+  ],
+  "details": {
+    "xena-api": {
+      "info": {
+        "project": "ASX-XENA",
+        "url": "https://bitbucket.example.com/projects/ASX-XENA/repos/xena-api/browse",
+        "archived": false
+      },
+      "defaultBranch": "main",
+      "rootListing": ["pom.xml", "Dockerfile", "CODEOWNERS", "src/", "deploy/", "README.md"],
+      "files": {
+        "pom.xml": {
+          "excerpt": [
+            { "line": 40, "text": "<properties>" },
+            { "line": 41, "text": "  <java.version>17</java.version>" },
+            { "line": 42, "text": "  <log4j2.version>2.14.1</log4j2.version>" },
+            { "line": 43, "text": "</properties>" }
+          ]
+        },
+        "Dockerfile": {
+          "excerpt": [{ "line": 1, "text": "FROM artifactory.example.com/base/eclipse-temurin:17-jre" }]
+        },
+        "CODEOWNERS": {
+          "excerpt": [
+            { "line": 1, "text": "*                 @ASX-XENA/core-services" },
+            { "line": 2, "text": "pom.xml           @ASX-XENA/core-services @jdoe" },
+            { "line": 3, "text": "/deploy/          @ASX-XENA/platform-infra" }
+          ]
+        }
+      },
+      "openPullRequests": [
+        { "id": 233, "title": "XENA-1203: Spring Boot 2.7 -> 3.2 upgrade (WIP)", "author": "jdoe", "url": "https://bitbucket.example.com/projects/ASX-XENA/repos/xena-api/pull-requests/233" }
+      ],
+      "recentCommits": [
+        { "date": "2026-10-09", "author": "jdoe", "message": "XENA-1203 bump spring-boot-starter-parent (wip)" },
+        { "date": "2026-10-03", "author": "asmith", "message": "Add /v2/exports endpoint" },
+        { "date": "2026-09-28", "author": "jdoe", "message": "Fix flaky integration test" }
+      ]
+    },
+    "xena-ami-baseline": {
+      "info": {
+        "project": "ASX-XENA",
+        "url": "https://bitbucket.example.com/projects/ASX-XENA/repos/xena-ami-baseline/browse",
+        "archived": false
+      },
+      "defaultBranch": "main",
+      "rootListing": ["packer/", "scripts/", "CODEOWNERS", "README.md"],
+      "files": {
+        "packer/bastion.pkr.hcl": {
+          "excerpt": [{ "line": 18, "text": "  openssh_version = \"9.3p1\"" }]
+        },
+        "CODEOWNERS": {
+          "excerpt": [{ "line": 1, "text": "*   @ASX-XENA/platform-infra @mlee" }]
+        }
+      },
+      "openPullRequests": [
+        { "id": 61, "title": "XENA-1311: rebuild bastion AMI with openssh 9.8p1 (CVE-2024-6387)", "author": "mlee", "url": "https://bitbucket.example.com/projects/ASX-XENA/repos/xena-ami-baseline/pull-requests/61" }
+      ],
+      "recentCommits": [
+        { "date": "2026-10-08", "author": "mlee", "message": "XENA-1311 bump openssh_version to 9.8p1" },
+        { "date": "2026-08-30", "author": "mlee", "message": "Monthly AMI refresh 2026.08" }
+      ]
+    }
+  }
+}

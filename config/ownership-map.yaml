@@ -1,0 +1,40 @@
+# Ownership map for the Security Remediation Advisor (PoC).
+# Curated mapping from repository / cloud resource / Wiz project to the owning team.
+# This is the strongest ownership signal. Keep it reviewed by the named security owner.
+# NOTE: Entries below are SAMPLE DATA for the offline demo. Replace with real XENA teams.
+
+defaults:
+  jiraProject: JIFA
+  securityOwner: "XENA Security Champion (replace with named owner)"
+  fallbackTeam: "UNASSIGNED - route to security owner"
+
+teams:
+  - team: "XENA Core Services"
+    jiraComponent: "Core Services"
+    securityContact: "core-services-sec@example.com"
+    businessCriticality: high
+    repositories:
+      - "ASX-XENA/xena-api"
+      - "ASX-XENA/xena-worker"
+      - "ASX-XENA/xena-batch"
+    wizProjects: ["XENA-Prod-Core"]
+    resourcePatterns: ["xena-api-*", "xena-worker-*"]
+
+  - team: "XENA Platform Infrastructure"
+    jiraComponent: "Platform Infra"
+    securityContact: "platform-infra-sec@example.com"
+    businessCriticality: high
+    repositories:
+      - "ASX-XENA/xena-infra"
+      - "ASX-XENA/xena-ami-baseline"
+    wizProjects: ["XENA-Prod-Platform"]
+    resourcePatterns: ["xena-bastion-*", "xena-eks-*"]
+
+  - team: "XENA Data Insights"
+    jiraComponent: "Insights"
+    securityContact: "insights-sec@example.com"
+    businessCriticality: medium
+    repositories:
+      - "ASX-XENA/xena-insights"
+    wizProjects: ["XENA-Insights"]
+    resourcePatterns: ["insights-*"]

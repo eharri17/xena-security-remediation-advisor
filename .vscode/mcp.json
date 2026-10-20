@@ -1,0 +1,47 @@
+{
+  // Dedicated, least-privilege MCP servers for the Security Remediation Advisor PoC.
+  // Credentials are prompted at runtime and stored in VS Code secret storage, never in git.
+  // Base URLs are not secret and are pinned below; only tokens are prompted.
+  "inputs": [
+    {
+      "id": "jira-pat",
+      "type": "promptString",
+      "description": "Jira Personal Access Token (read access to project JIFA is sufficient)",
+      "password": true
+    },
+    {
+      "id": "bitbucket-pat",
+      "type": "promptString",
+      "description": "Bitbucket Personal Access Token (repository read on project ASX-XENA)",
+      "password": true
+    },
+    {
+      "id": "wiz-datacenter",
+      "type": "promptString",
+      "description": "Wiz data center for your tenant (J&J tenant: us62). Found in Wiz > User Settings > Tenant Info",
+      "default": "us62"
+    }
+  ],
+  "servers": {
+    "advisor-atlassian": {
+      "type": "http",
+      "url": "https://atlassian-mcp.xena.dev/mcp/",
+      "headers": {
+        "X-Atlassian-Jira-Url": "https://jira.jnj.com",
+        "X-Atlassian-Jira-Personal-Token": "${input:jira-pat}",
+        "X-Atlassian-Bitbucket-Url": "https://sourcecode.jnj.com",
+        "X-Atlassian-Bitbucket-Personal-Token": "${input:bitbucket-pat}",
+        // Server-side enforcement: write tools are disabled for every product.
+        "X-Atlassian-Read-Only-Mode": "true",
+        "X-Atlassian-Enable-Xray": "false"
+      }
+    },
+    "advisor-wiz": {
+      "type": "http",
+      "url": "https://mcp.app.wiz.io",
+      "headers": {
+        "Wiz-DataCenter": "us62"
+      }
+    }
+  }
+}

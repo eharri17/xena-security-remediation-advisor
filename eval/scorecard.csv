@@ -1,0 +1,4 @@
+finding_id,scenario,expected_repository,expected_owner,expected_priority,expected_duplicate,agent_repository,agent_owner,agent_priority,agent_duplicate,accepted_without_rework,manual_triage_minutes,agent_triage_minutes,reviewer,notes
+wiz-demo-0001,A new critical,ASX-XENA/xena-api,XENA Core Services,P1,NONE,,,,,,45,,,
+wiz-demo-0002,B duplicate,ASX-XENA/xena-ami-baseline,XENA Platform Infrastructure,P2,EXACT:XENA-1311,,,,,,40,,,
+wiz-demo-0003,C out of scope,N/A,N/A,N/A,N/A,,,,,,10,,,

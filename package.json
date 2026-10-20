@@ -1,0 +1,17 @@
+{
+  "name": "xena-security-remediation-advisor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "XENA-PoC-01: Workflow + Research agent that triages critical Wiz findings using the Wiz and Atlassian MCP servers, with human review in the loop.",
+  "scripts": {
+    "test": "node --test tests/*.test.cjs",
+    "score": "node eval/score.cjs",
+    "demo:guardrails": "node demo/guardrails-demo.cjs",
+    "audit:tail": "tail -n 20 audit/audit-log.jsonl",
+    "live:smoke": "node scripts/live/live-smoke.cjs",
+    "live:smoke:wiz": "node scripts/live/live-smoke.cjs --wiz"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

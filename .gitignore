@@ -1,0 +1,10 @@
+# Drafts and audit logs can contain sensitive vulnerability data; keep them out of git.
+drafts/*
+!drafts/.gitkeep
+audit/*
+!audit/.gitkeep
+node_modules/
+.env
+# Local MCP config with inline tokens (e.g. for Copilot CLI); never commit it.
+.mcp.json
+.DS_Store
